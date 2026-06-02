@@ -1,7 +1,7 @@
 # ai-seo-magic-button
 
 **Point it at your site, get a whole-site AEO/GEO audit plus a ready-to-run plan
-your agent can execute.** One magic button for AI-SEO — runs as a Claude skill, a
+your agent can execute.** One magic button for AI-SEO - runs as a Claude skill, a
 Claude plugin, **and** an MCP server, so it works in any MCP host (Cursor, Cline,
 Windsurf, Claude Desktop).
 
@@ -20,7 +20,7 @@ Under the hood it is a thin orchestration layer over two engines:
 1. **Run it** → it crawls your site, audits every page, and generates
    `plan.json` + a markdown checklist, prioritized by estimated score lift.
 2. **Run your agent against the generated plan** to execute it (rewrites, schema,
-   llms.txt, robots) — then verify the score actually lifted.
+   llms.txt, robots) - then verify the score actually lifted.
 
 ## Install
 
@@ -50,7 +50,7 @@ Exposes one tool: **`generate_seo_plan`** `{ domain, pages? }` → returns the f
 ### As a Claude skill
 
 Copy `skill/` into your `.claude/skills/` (or install via the plugin above). The
-skill is the conversational magic-button UX — see [`skill/SKILL.md`](skill/SKILL.md).
+skill is the conversational magic-button UX - see [`skill/SKILL.md`](skill/SKILL.md).
 
 ## CLI
 
@@ -95,7 +95,7 @@ https://example.com
 
 A full sample `plan.json` is in [`examples/plan.example.json`](examples/plan.example.json).
 Each item carries a self-contained `action` (the tool + baked params) and an
-`acceptance` check — see [`docs/plan-format.md`](docs/plan-format.md).
+`acceptance` check - see [`docs/plan-format.md`](docs/plan-format.md).
 
 ## How it is built
 
