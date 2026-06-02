@@ -1,0 +1,11 @@
+{
+  "name": "ai-seo-magic-button",
+  "version": "0.1.0",
+  "description": "Point it at your site, get a whole-site AEO/GEO audit plus a ready-to-run plan your agent can execute.",
+  "author": "AutomateLab",
+  "license": "MIT",
+  "homepage": "https://automatelab.tech/products/",
+  "skills": [
+    "../skill"
+  ]
+}

@@ -1,0 +1,6 @@
+node_modules/
+dist/
+magic-button-out/
+plan.json
+plan.md
+*.log

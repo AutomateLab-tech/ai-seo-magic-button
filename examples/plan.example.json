@@ -1,0 +1,150 @@
+{
+  "schema_version": "1.0",
+  "target": "https://example.com",
+  "generated_at": "2026-06-02T00:00:00.000Z",
+  "generator": "ai-seo-magic-button@0.1.0",
+  "summary": {
+    "pages_audited": 1,
+    "avg_score": 48,
+    "grade": "D",
+    "total_items": 8,
+    "est_total_delta": 78,
+    "by_severity": { "critical": 5, "high": 1, "medium": 2 }
+  },
+  "items": [
+    {
+      "url": "https://example.com",
+      "source_file": null,
+      "category": "schema",
+      "title": "No JSON-LD structured data found on this page.",
+      "rationale": "Add at least one <script type=\"application/ld+json\"> block. Start with Article or FAQPage.",
+      "severity": "critical",
+      "expected_score_delta": 12,
+      "action": {
+        "type": "manual",
+        "instructions": "Add at least one <script type=\"application/ld+json\"> block. Start with Article or FAQPage."
+      },
+      "acceptance": "Re-run audit.site; this finding no longer appears in top_5_fixes.",
+      "id": "p1-no-json-ld-structured-data-f",
+      "priority": 1
+    },
+    {
+      "url": "https://example.com",
+      "source_file": null,
+      "category": "schema",
+      "title": "No FAQ structure found (no FAQPage schema or H3 question headings).",
+      "rationale": "Add FAQ H3 headings ending in '?' with answer paragraphs, and a FAQPage JSON-LD block.",
+      "severity": "critical",
+      "expected_score_delta": 12,
+      "action": {
+        "type": "manual",
+        "instructions": "Add FAQ H3 headings ending in '?' with answer paragraphs, and a FAQPage JSON-LD block."
+      },
+      "acceptance": "Re-run audit.site; this finding no longer appears in top_5_fixes.",
+      "id": "p2-no-faq-structure-found-no-fa",
+      "priority": 2
+    },
+    {
+      "url": "https://example.com",
+      "source_file": null,
+      "category": "structure",
+      "title": "No sitemap found at standard locations.",
+      "rationale": "Create a sitemap.xml and declare it in robots.txt with 'Sitemap: https://yourdomain.com/sitemap.xml'.",
+      "severity": "critical",
+      "expected_score_delta": 12,
+      "action": {
+        "type": "manual",
+        "instructions": "Create a sitemap.xml and declare it in robots.txt with 'Sitemap: https://yourdomain.com/sitemap.xml'."
+      },
+      "acceptance": "Re-run audit.site; this finding no longer appears in top_5_fixes.",
+      "id": "p3-no-sitemap-found-at-standard",
+      "priority": 3
+    },
+    {
+      "url": "https://example.com",
+      "source_file": null,
+      "category": "schema",
+      "title": "No JSON-LD structured data found on this page.",
+      "rationale": "Add at least one <script type=\"application/ld+json\"> block. Start with Article or FAQPage.",
+      "severity": "critical",
+      "expected_score_delta": 12,
+      "action": {
+        "type": "manual",
+        "instructions": "Add at least one <script type=\"application/ld+json\"> block. Start with Article or FAQPage."
+      },
+      "acceptance": "Re-run audit.page on https://example.com; finding resolved.",
+      "id": "p4-no-json-ld-structured-data-f",
+      "priority": 4
+    },
+    {
+      "url": "https://example.com",
+      "source_file": null,
+      "category": "schema",
+      "title": "No FAQ structure found (no FAQPage schema or H3 question headings).",
+      "rationale": "Add FAQ H3 headings ending in '?' with answer paragraphs, and a FAQPage JSON-LD block.",
+      "severity": "critical",
+      "expected_score_delta": 12,
+      "action": {
+        "type": "manual",
+        "instructions": "Add FAQ H3 headings ending in '?' with answer paragraphs, and a FAQPage JSON-LD block."
+      },
+      "acceptance": "Re-run audit.page on https://example.com; finding resolved.",
+      "id": "p5-no-faq-structure-found-no-fa",
+      "priority": 5
+    },
+    {
+      "url": "https://example.com",
+      "source_file": null,
+      "category": "citation",
+      "title": "Rewrite for AEO: this page",
+      "rationale": "AI assistants are unlikely to cite this page because no JSON-LD structured data found on this page.",
+      "severity": "high",
+      "expected_score_delta": 10,
+      "action": {
+        "type": "rewrite_aeo",
+        "tool": "rewrite.aeo",
+        "params": {
+          "url": "https://example.com",
+          "target_query": "this page",
+          "format": "article",
+          "max_words": 1500
+        }
+      },
+      "acceptance": "score.citation_worthiness for https://example.com improves; BLUF + FAQ present.",
+      "id": "p6-rewrite-for-aeo-this-page",
+      "priority": 6
+    },
+    {
+      "url": "https://example.com",
+      "source_file": null,
+      "category": "schema",
+      "title": "Low authority signals - missing Organization or author Person schema.",
+      "rationale": "Add Organization JSON-LD and Article.author as a Person node with sameAs links.",
+      "severity": "medium",
+      "expected_score_delta": 4,
+      "action": {
+        "type": "manual",
+        "instructions": "Add Organization JSON-LD and Article.author as a Person node with sameAs links."
+      },
+      "acceptance": "Re-run audit.site; this finding no longer appears in top_5_fixes.",
+      "id": "p7-low-authority-signals-missin",
+      "priority": 7
+    },
+    {
+      "url": "https://example.com",
+      "source_file": null,
+      "category": "technical",
+      "title": "No canonical link element found.",
+      "rationale": "Add <link rel=\"canonical\" href=\"https://example.com/page\"> to <head>.",
+      "severity": "medium",
+      "expected_score_delta": 4,
+      "action": {
+        "type": "manual",
+        "instructions": "Add <link rel=\"canonical\" href=\"https://example.com/page\"> to <head>."
+      },
+      "acceptance": "Re-run audit.site; this finding no longer appears in top_5_fixes.",
+      "id": "p8-no-canonical-link-element-fo",
+      "priority": 8
+    }
+  ]
+}
