@@ -1,0 +1,6 @@
+{
+  "license": "MIT",
+  "scripts": {
+    "mcp": "node dist/mcp-server.js"
+  }
+}

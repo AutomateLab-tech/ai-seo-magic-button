@@ -25,6 +25,31 @@ server.registerTool(
         .optional()
         .describe("Include purely-informational findings (non-actionable notes). Off by default."),
     },
+    annotations: {
+      readOnlyHint: true,
+      destructiveHint: false,
+      idempotentHint: true,
+      openWorldHint: true,
+    },
+    outputSchema: {
+      domain: z.string(),
+      pages_audited: z.number(),
+      generated_at: z.string(),
+      items: z.array(
+        z.object({
+          url: z.string(),
+          category: z.enum(["schema", "structure", "citation", "content"]),
+          severity: z.enum(["critical", "high", "medium", "low", "info"]),
+          title: z.string(),
+          expected_score_delta: z.number(),
+          action: z.object({
+            tool: z.string(),
+            params: z.record(z.unknown()),
+          }),
+          acceptance: z.string(),
+        })
+      ),
+    },
   },
   async ({ domain, pages, include_info }) => {
     const plan = await generatePlan(domain, { pages: pages ?? 10, includeInfo: include_info ?? false });
