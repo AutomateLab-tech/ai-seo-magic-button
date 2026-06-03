@@ -44,7 +44,7 @@ Exposes one tool: **`generate_seo_plan`** `{ domain, pages? }` → returns the f
 ### As a Claude Code plugin
 
 ```
-/plugin install https://github.com/AutomateLab-tech/ai-seo-magic-button
+/plugin install AutomateLab-tech/ai-seo-magic-button
 ```
 
 ### As a Claude skill
