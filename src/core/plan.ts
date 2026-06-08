@@ -101,26 +101,26 @@ export function synthesizePlan(audit: SiteAudit, opts: SynthOptions = {}): Plan 
   const raw: Array<Omit<PlanItem, "id" | "priority">> = [];
 
   // --- Site-level: AI-crawler blocks (critical — nothing else matters if bots can't read you) ---
-  if (audit.site.crawler_blocks && audit.site.crawler_blocks.length > 0) {
+  if (audit_site.crawler_blocks && audit_site.crawler_blocks.length > 0) {
     raw.push({
       url: audit.origin,
       source_file: null,
       category: "robots",
-      title: `Unblock AI crawlers: ${audit.site.crawler_blocks.join(", ")}`,
-      rationale: `These AI crawlers are blocked by robots.txt or UA gating, so AI engines can't read the site to cite it: ${audit.site.crawler_blocks.join(", ")}.`,
+      title: `Unblock AI crawlers: ${audit_site.crawler_blocks.join(", ")}`,
+      rationale: `These AI crawlers are blocked by robots.txt or UA gating, so AI engines can't read the site to cite it: ${audit_site.crawler_blocks.join(", ")}.`,
       severity: "critical",
       expected_score_delta: DELTA_BY_SEVERITY.critical,
       action: {
         type: "manual",
-        instructions: `Edit robots.txt at ${audit.origin}/robots.txt to allow: ${audit.site.crawler_blocks.join(", ")}. Remove Disallow rules and any server-side UA blocks for these agents.`,
+        instructions: `Edit robots.txt at ${audit.origin}/robots.txt to allow: ${audit_site.crawler_blocks.join(", ")}. Remove Disallow rules and any server-side UA blocks for these agents.`,
       },
-      acceptance: `audit.crawler_access on ${audit.origin} reports can_fetch=true for all listed crawlers.`,
+      acceptance: `audit_crawler_access on ${audit.origin} reports can_fetch=true for all listed crawlers.`,
     });
   }
 
   // --- Site-level: llms.txt — only when it's genuinely missing AND we have a
   // sitemap to build it from. Presence is checked by a real GET in the audit. ---
-  if (audit.sitemap_url && audit.site.llms_txt_present === false) {
+  if (audit_sitemap_url && audit_site.llms_txt_present === false) {
     raw.push({
       url: audit.origin,
       source_file: "llms.txt",
@@ -132,16 +132,16 @@ export function synthesizePlan(audit: SiteAudit, opts: SynthOptions = {}): Plan 
       expected_score_delta: DELTA_BY_SEVERITY.low,
       action: {
         type: "generate_llms_txt",
-        tool: "llms_txt.generate",
+        tool: "llms_txt_generate",
         params: { domain: audit.domain, max_pages: 30 },
         out_path: "llms.txt",
       },
-      acceptance: `${audit.origin}/llms.txt exists and passes llms_txt.validate.`,
+      acceptance: `${audit.origin}/llms.txt exists and passes llms_txt_validate.`,
     });
   }
 
   // --- Site-level top fixes ---
-  for (const f of audit.site.top_5_fixes ?? []) {
+  for (const f of audit_site.top_5_fixes ?? []) {
     const msg = String(f.message ?? f.fix ?? JSON.stringify(f));
     const fix = String(f.fix ?? "");
     if (isAntiCitation(`${msg} ${fix}`)) continue;
@@ -157,14 +157,14 @@ export function synthesizePlan(audit: SiteAudit, opts: SynthOptions = {}): Plan 
       severity: sev,
       expected_score_delta: DELTA_BY_SEVERITY[sev],
       action: { type: "manual", instructions: String(f.fix ?? msg) },
-      acceptance: "Re-run audit.site; this finding no longer appears in top_5_fixes.",
+      acceptance: "Re-run audit_site; this finding no longer appears in top_5_fixes.",
       failure_signal: typeof f.failure_signal === "string" ? f.failure_signal : undefined,
       leading_indicator: typeof f.leading_indicator === "string" ? f.leading_indicator : undefined,
     });
   }
 
   // --- Per-page ---
-  for (const page of audit.pages) {
+  for (const page of audit_pages) {
     if (page.error) continue;
     const score = page.score ?? 100;
 
@@ -187,10 +187,10 @@ export function synthesizePlan(audit: SiteAudit, opts: SynthOptions = {}): Plan 
         expected_score_delta: Math.max(4, Math.round((78 - score) / 3)),
         action: {
           type: "rewrite_aeo",
-          tool: "rewrite.aeo",
+          tool: "rewrite_aeo",
           params: { url: page.url, target_query: targetQuery, format: "article", max_words: 1500 },
         },
-        acceptance: `score.citation_worthiness for ${page.url} improves; BLUF + FAQ present.`,
+        acceptance: `score_citation_worthiness for ${page.url} improves; BLUF + FAQ present.`,
       });
     }
 
@@ -214,7 +214,7 @@ export function synthesizePlan(audit: SiteAudit, opts: SynthOptions = {}): Plan 
         severity: sev,
         expected_score_delta: DELTA_BY_SEVERITY[sev],
         action: { type: "manual", instructions: String(f.fix ?? msg) },
-        acceptance: `Re-run audit.page on ${page.url}; finding resolved.`,
+        acceptance: `Re-run audit_page on ${page.url}; finding resolved.`,
         failure_signal: typeof f.failure_signal === "string" ? f.failure_signal : undefined,
         leading_indicator: typeof f.leading_indicator === "string" ? f.leading_indicator : undefined,
       });
@@ -223,7 +223,7 @@ export function synthesizePlan(audit: SiteAudit, opts: SynthOptions = {}): Plan 
 
   // --- Site-level: pricing.md for agent commerce (#14) — only when the crawl
   // surfaced a pricing/plans page worth exposing in machine-readable form. ---
-  const pricingPage = audit.pages.find((p) => /\/(pricing|plans)(\/|$|\?)/i.test(p.url) && !p.error);
+  const pricingPage = audit_pages.find((p) => /\/(pricing|plans)(\/|$|\?)/i.test(p.url) && !p.error);
   if (pricingPage) {
     raw.push({
       url: pricingPage.url,
@@ -236,7 +236,7 @@ export function synthesizePlan(audit: SiteAudit, opts: SynthOptions = {}): Plan 
       expected_score_delta: DELTA_BY_SEVERITY.low,
       action: {
         type: "generate_pricing_md",
-        tool: "pricing.generate",
+        tool: "pricing_generate",
         params: { domain: audit.domain, pricing_url: pricingPage.url },
         out_path: "pricing.md",
       },
@@ -263,7 +263,7 @@ export function synthesizePlan(audit: SiteAudit, opts: SynthOptions = {}): Plan 
     priority: i + 1,
   }));
 
-  const audited = audit.pages.filter((p) => typeof p.score === "number");
+  const audited = audit_pages.filter((p) => typeof p.score === "number");
   const avg = audited.length ? Math.round(audited.reduce((s, p) => s + (p.score as number), 0) / audited.length) : 0;
 
   // Honest headroom: you can never gain more than (100 - score) on a page, so
@@ -285,12 +285,12 @@ export function synthesizePlan(audit: SiteAudit, opts: SynthOptions = {}): Plan 
     summary: {
       pages_audited: audited.length,
       avg_score: avg,
-      grade: audit.site.overall_grade ?? gradeFor(avg),
+      grade: audit_site.overall_grade ?? gradeFor(avg),
       total_items: items.length,
       est_total_delta: Math.min(rawDelta, headroom),
       by_severity: bySeverity,
-      platform_readiness: audit.site.platform_readiness,
-      score_caps: audit.site.score_caps,
+      platform_readiness: audit_site.platform_readiness,
+      score_caps: audit_site.score_caps,
     },
     items,
   };

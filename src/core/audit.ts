@@ -131,8 +131,8 @@ export async function auditSite(domain: string, opts: AuditOptions = {}): Promis
     // and a direct check for whether /llms.txt is actually served.
     log("running site-level audit…");
     const [siteRes, crawlerRes, llmsPresent] = await Promise.all([
-      aiSeo.call<any>("audit.site", { domain: hostname, respect_robots: true }).catch(() => ({})),
-      citation.call<any>("audit.crawler_access", { url: origin }).catch(() => ({})),
+      aiSeo.call<any>("audit_site", { domain: hostname, respect_robots: true }).catch(() => ({})),
+      citation.call<any>("audit_crawler_access", { url: origin }).catch(() => ({})),
       llmsTxtPresent(origin),
     ]);
 
@@ -147,7 +147,7 @@ export async function auditSite(domain: string, opts: AuditOptions = {}): Promis
     let predictByUrl = new Map<string, any>();
     if (crawl.sitemap_url) {
       const cgaps = await citation
-        .call<any>("audit.sitemap", { sitemap_url: crawl.sitemap_url, limit: pages, concurrency: 3 })
+        .call<any>("audit_sitemap", { sitemap_url: crawl.sitemap_url, limit: pages, concurrency: 3 })
         .catch(() => null);
       if (cgaps?.urls) for (const u of cgaps.urls) predictByUrl.set(u.url, u);
     }
@@ -156,7 +156,7 @@ export async function auditSite(domain: string, opts: AuditOptions = {}): Promis
     log(`auditing ${crawl.urls.length} pages…`);
     const pageAudits = await mapWithConcurrency(crawl.urls, concurrency, async (url): Promise<PageAudit> => {
       try {
-        const a = await aiSeo!.call<any>("audit.page", { url, respect_robots: true });
+        const a = await aiSeo!.call<any>("audit_page", { url, respect_robots: true });
         const predict = predictByUrl.get(url);
         const pr = a?.platform_readiness;
         const platform_readiness: PlatformReadiness | undefined = pr

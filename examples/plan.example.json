@@ -24,7 +24,7 @@
         "type": "manual",
         "instructions": "Add at least one <script type=\"application/ld+json\"> block. Start with Article or FAQPage."
       },
-      "acceptance": "Re-run audit.site; this finding no longer appears in top_5_fixes.",
+      "acceptance": "Re-run audit_site; this finding no longer appears in top_5_fixes.",
       "id": "p1-no-json-ld-structured-data-f",
       "priority": 1
     },
@@ -40,7 +40,7 @@
         "type": "manual",
         "instructions": "Add FAQ H3 headings ending in '?' with answer paragraphs, and a FAQPage JSON-LD block."
       },
-      "acceptance": "Re-run audit.site; this finding no longer appears in top_5_fixes.",
+      "acceptance": "Re-run audit_site; this finding no longer appears in top_5_fixes.",
       "id": "p2-no-faq-structure-found-no-fa",
       "priority": 2
     },
@@ -56,7 +56,7 @@
         "type": "manual",
         "instructions": "Create a sitemap.xml and declare it in robots.txt with 'Sitemap: https://yourdomain.com/sitemap.xml'."
       },
-      "acceptance": "Re-run audit.site; this finding no longer appears in top_5_fixes.",
+      "acceptance": "Re-run audit_site; this finding no longer appears in top_5_fixes.",
       "id": "p3-no-sitemap-found-at-standard",
       "priority": 3
     },
@@ -72,7 +72,7 @@
         "type": "manual",
         "instructions": "Add at least one <script type=\"application/ld+json\"> block. Start with Article or FAQPage."
       },
-      "acceptance": "Re-run audit.page on https://example.com; finding resolved.",
+      "acceptance": "Re-run audit_page on https://example.com; finding resolved.",
       "id": "p4-no-json-ld-structured-data-f",
       "priority": 4
     },
@@ -88,7 +88,7 @@
         "type": "manual",
         "instructions": "Add FAQ H3 headings ending in '?' with answer paragraphs, and a FAQPage JSON-LD block."
       },
-      "acceptance": "Re-run audit.page on https://example.com; finding resolved.",
+      "acceptance": "Re-run audit_page on https://example.com; finding resolved.",
       "id": "p5-no-faq-structure-found-no-fa",
       "priority": 5
     },
@@ -102,7 +102,7 @@
       "expected_score_delta": 10,
       "action": {
         "type": "rewrite_aeo",
-        "tool": "rewrite.aeo",
+        "tool": "rewrite_aeo",
         "params": {
           "url": "https://example.com",
           "target_query": "this page",
@@ -110,7 +110,7 @@
           "max_words": 1500
         }
       },
-      "acceptance": "score.citation_worthiness for https://example.com improves; BLUF + FAQ present.",
+      "acceptance": "score_citation_worthiness for https://example.com improves; BLUF + FAQ present.",
       "id": "p6-rewrite-for-aeo-this-page",
       "priority": 6
     },
@@ -126,7 +126,7 @@
         "type": "manual",
         "instructions": "Add Organization JSON-LD and Article.author as a Person node with sameAs links."
       },
-      "acceptance": "Re-run audit.site; this finding no longer appears in top_5_fixes.",
+      "acceptance": "Re-run audit_site; this finding no longer appears in top_5_fixes.",
       "id": "p7-low-authority-signals-missin",
       "priority": 7
     },
@@ -142,7 +142,7 @@
         "type": "manual",
         "instructions": "Add <link rel=\"canonical\" href=\"https://example.com/page\"> to <head>."
       },
-      "acceptance": "Re-run audit.site; this finding no longer appears in top_5_fixes.",
+      "acceptance": "Re-run audit_site; this finding no longer appears in top_5_fixes.",
       "id": "p8-no-canonical-link-element-fo",
       "priority": 8
     }

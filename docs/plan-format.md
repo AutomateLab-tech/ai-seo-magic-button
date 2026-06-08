@@ -66,9 +66,9 @@ The apply layer switches on `action.type`:
 
 | `type` | Driven by | Apply behaviour |
 |---|---|---|
-| `generate_llms_txt` | ai-seo `llms_txt.generate` | call tool → write `out_path` |
-| `rewrite_aeo` | ai-seo `rewrite.aeo` | call tool → write back to `source_file` (or out dir); if no host LLM, emit a `*.prompt.md` for the agent |
-| `rewrite_geo` | ai-seo `rewrite.geo` | same as above |
+| `generate_llms_txt` | ai-seo `llms_txt_generate` | call tool → write `out_path` |
+| `rewrite_aeo` | ai-seo `rewrite_aeo` | call tool → write back to `source_file` (or out dir); if no host LLM, emit a `*.prompt.md` for the agent |
+| `rewrite_geo` | ai-seo `rewrite_geo` | same as above |
 | `insert_schema` | deterministic | inject `jsonld` before `</head>` of `source_file`, or emit a snippet to paste |
 | `manual` | the agent | follow `instructions` (e.g. edit robots.txt) |
 

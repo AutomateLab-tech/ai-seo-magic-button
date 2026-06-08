@@ -16,7 +16,7 @@ export interface VerifyResult {
 }
 
 function avgScore(audit: SiteAudit): number {
-  const s = audit.pages.filter((p) => typeof p.score === "number");
+  const s = audit_pages.filter((p) => typeof p.score === "number");
   return s.length ? Math.round(s.reduce((a, p) => a + (p.score as number), 0) / s.length) : 0;
 }
 

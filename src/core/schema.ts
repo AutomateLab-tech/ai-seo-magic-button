@@ -25,10 +25,10 @@ export type Category =
 // A PlanAction is a deterministic descriptor of HOW to execute the item.
 // `tool` actions are driven by the apply helpers against the ai-seo MCP.
 export type PlanAction =
-  | { type: "generate_llms_txt"; tool: "llms_txt.generate"; params: { domain: string; max_pages?: number }; out_path: string }
-  | { type: "generate_pricing_md"; tool: "pricing.generate"; params: { domain: string; pricing_url?: string }; out_path: string }
-  | { type: "rewrite_aeo"; tool: "rewrite.aeo"; params: { url?: string; text?: string; target_query: string; format?: string; max_words?: number } }
-  | { type: "rewrite_geo"; tool: "rewrite.geo"; params: { url?: string; text?: string; target_query: string; add_comparison_table?: boolean; max_words?: number } }
+  | { type: "generate_llms_txt"; tool: "llms_txt_generate"; params: { domain: string; max_pages?: number }; out_path: string }
+  | { type: "generate_pricing_md"; tool: "pricing_generate"; params: { domain: string; pricing_url?: string }; out_path: string }
+  | { type: "rewrite_aeo"; tool: "rewrite_aeo"; params: { url?: string; text?: string; target_query: string; format?: string; max_words?: number } }
+  | { type: "rewrite_geo"; tool: "rewrite_geo"; params: { url?: string; text?: string; target_query: string; add_comparison_table?: boolean; max_words?: number } }
   | { type: "insert_schema"; jsonld: Record<string, unknown> }
   | { type: "manual"; instructions: string };
 
@@ -48,7 +48,7 @@ export interface PlanItem {
   leading_indicator?: string;    // falsifiability: leading indicator to monitor
 }
 
-// Per-engine readiness (mirrors ai-seo audit.page platform_readiness).
+// Per-engine readiness (mirrors ai-seo audit_page platform_readiness).
 export interface PlatformReadiness {
   chatgpt?: number;
   perplexity?: number;

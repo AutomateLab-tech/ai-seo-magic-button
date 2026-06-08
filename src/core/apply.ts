@@ -8,7 +8,7 @@
 //   open the pre-mapped source (if any) -> call the named tool with baked
 //   params -> write the result back (or to the out dir) -> record the delta.
 //
-// Tool rewrites (rewrite.aeo/geo) need an LLM via MCP sampling. When the host
+// Tool rewrites (rewrite_aeo/geo) need an LLM via MCP sampling. When the host
 // provides none, those tools return mode:"prompt_template" — we surface those
 // as "needs agent" so the executing agent finishes them. Nothing is silently
 // dropped.
@@ -102,7 +102,7 @@ async function applyItem(
 
       case "rewrite_aeo":
       case "rewrite_geo": {
-        const tool = action.type === "rewrite_aeo" ? "rewrite.aeo" : "rewrite.geo";
+        const tool = action.type === "rewrite_aeo" ? "rewrite_aeo" : "rewrite_geo";
         const res = await ctx.aiSeo!.call<any>(tool, action.params);
         const mode = res?.mode;
         const text: string = typeof res === "string" ? res : res?.rewritten ?? res?.content ?? res?._text ?? "";
