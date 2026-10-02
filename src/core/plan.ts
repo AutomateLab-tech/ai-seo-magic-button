@@ -97,6 +97,7 @@ function slugifyId(prefix: string, n: number, label: string): string {
 }
 
 export function synthesizePlan(audit: SiteAudit, opts: SynthOptions = {}): Plan {
+  const { site: audit_site, pages: audit_pages, sitemap_url: audit_sitemap_url } = audit;
   const includeInfo = opts.includeInfo ?? false;
   const raw: Array<Omit<PlanItem, "id" | "priority">> = [];
 
