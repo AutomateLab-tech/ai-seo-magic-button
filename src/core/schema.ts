@@ -1,4 +1,4 @@
-// plan.json schema (AL-723) — the portable, dumb-agent-ready deliverable.
+// plan.json schema (internal follow-up) — the portable, dumb-agent-ready deliverable.
 //
 // Design rule: every PlanItem is SELF-CONTAINED. A weak agent (or a thin apply
 // helper) must be able to execute one item with no extra reasoning — every

@@ -1,4 +1,4 @@
-# ai-seo-magic-button — scope & positioning (AL-722)
+# ai-seo-magic-button — scope & positioning (internal follow-up)
 
 ## Promise
 

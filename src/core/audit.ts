@@ -1,8 +1,8 @@
-// Audit orchestration (AL-724).
+// Audit orchestration (internal follow-up).
 //
 // Crawl the site, run per-page ai-seo audits, pull a site-level composite, and
 // layer citation-intelligence predictions on top. Returns a unified SiteAudit
-// that the plan synthesis stage (AL-725) turns into plan.json.
+// that the plan synthesis stage (internal follow-up) turns into plan.json.
 
 import { connectAiSeo, connectCitation, type ToolClient } from "./mcp-client.js";
 import { discoverUrls, originOf } from "./crawl.js";

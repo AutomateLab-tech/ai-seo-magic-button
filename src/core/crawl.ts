@@ -1,4 +1,4 @@
-// Whole-site URL discovery (AL-724).
+// Whole-site URL discovery (internal follow-up).
 //
 // The differentiator vs the existing single-URL web tool / GitHub Action is
 // WHOLE-SITE coverage. We discover URLs from the sitemap (following sitemap

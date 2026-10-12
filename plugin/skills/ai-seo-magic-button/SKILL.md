@@ -40,7 +40,7 @@ CITATION_MCP_PATH=/abs/path/citation-intelligence-mcp/dist/index.js
 citation gaps, and writes `plan.json` + `plan.md`:
 
 ```
-node dist/cli.js audit <domain> --pages 10 --out plan.json --md plan.md
+npx -y ai-seo-magic-button audit <domain> --pages 10 --out plan.json --md plan.md
 ```
 
 Read `plan.json`. Present the summary (avg score, grade, top fixes by estimated
@@ -55,7 +55,7 @@ informational notes are hidden unless you add `--include-info`.
 - `action.type: "generate_llms_txt" | "rewrite_aeo" | "rewrite_geo"` — run the
   apply helper, which drives the named ai-seo tool and writes the result back:
   ```
-  node dist/cli.js apply plan.json --out magic-button-out
+  npx -y ai-seo-magic-button apply plan.json --out magic-button-out
   ```
   Items that need an LLM the host can't provide are emitted as `*.prompt.md` and
   marked `needs_agent` — finish those yourself, in this Claude session.
@@ -65,7 +65,7 @@ informational notes are hidden unless you add `--include-info`.
 **Verify the lift.** After executing, re-audit and diff the score:
 
 ```
-node dist/cli.js verify plan.json
+npx -y ai-seo-magic-button verify plan.json
 ```
 
 Report the before → after delta to the user as proof.
@@ -76,7 +76,7 @@ If the user runs agency-os (a Notion Tasks DB), push each plan item in as a task
 so it flows Suggestion → To-Do → Done:
 
 ```
-node dist/cli.js sink plan.json
+npx -y ai-seo-magic-button sink plan.json
 ```
 
 With no board configured it degrades to a local `plan.md` checklist.

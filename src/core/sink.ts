@@ -1,4 +1,4 @@
-// Optional agency-os / Notion sink (AL-726).
+// Optional agency-os / Notion sink (internal follow-up).
 //
 // If the user runs agency-os (a Notion Tasks DB), push each plan item in as a
 // task so it flows Suggestion -> To-Do -> Done and their agent works the board.

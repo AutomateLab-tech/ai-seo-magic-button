@@ -1,4 +1,4 @@
-// Shared core library (AL-723 boundary).
+// Shared core library (internal follow-up boundary).
 //
 // This barrel is the ONLY thing the surface layers (CLI, MCP server, Claude
 // skill, plugin) import. The core owns audit + plan generation + apply + verify

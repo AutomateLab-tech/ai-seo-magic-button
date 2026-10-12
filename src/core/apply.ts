@@ -1,7 +1,7 @@
-// Apply helpers (AL-780) — the deterministic execution layer.
+// Apply helpers (internal follow-up) — the deterministic execution layer.
 //
 // THIN by design: all the smart work (mapping, fix selection, params) happened
-// at plan time (AL-725). Apply just iterates the plan and drives the bundled
+// at plan time (internal follow-up). Apply just iterates the plan and drives the bundled
 // ai-seo tools. This is what lets the product work behind a weak/dumb agent.
 //
 // For each item:

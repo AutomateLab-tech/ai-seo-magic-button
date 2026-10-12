@@ -1,4 +1,4 @@
-# The dumb-agent-ready plan format + core-lib boundary (AL-723)
+# The dumb-agent-ready plan format + core-lib boundary (internal follow-up)
 
 ## Why this format
 
@@ -80,7 +80,7 @@ so apply never has to decide anything.
 **Decision: the orchestration logic is a shared core library; the audit engines
 stay as separate MCP processes the core SPAWNS as stdio subprocesses.**
 
-The earlier worry (AL-723/AL-733) was that an MCP server can't cleanly call the
+The earlier worry (internal follow-up/internal follow-up) was that an MCP server can't cleanly call the
 ai-seo / citation-intelligence MCPs "over the wire" — i.e. you can't rely on the
 *host* to nest MCP calls. The resolution: don't rely on the host. The core lib
 ([`src/core`](../src/core)) is an MCP **client** that spawns each engine as a
@@ -95,8 +95,8 @@ So the boundary is:
   synthesis (`plan`), apply helpers (`apply`), verify (`verify`), sink (`sink`).
 - **Surface layers** — own UX only, import the core, add zero audit logic:
   - `src/cli.ts` — the local command line.
-  - `src/mcp-server.ts` — exposes `generate_seo_plan` (AL-733).
-  - `skill/` + `plugin/` — the Claude Code skill and plugin (AL-728).
+  - `src/mcp-server.ts` — exposes `generate_seo_plan` (internal follow-up).
+  - `skill/` + `plugin/` — the Claude Code skill and plugin (internal follow-up).
 
 This is why all surfaces stay thin and consistent: there is exactly one
 implementation of audit + plan generation, and four ways to invoke it.

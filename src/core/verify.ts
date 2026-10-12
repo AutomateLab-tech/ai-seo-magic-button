@@ -1,4 +1,4 @@
-// Re-audit / verify loop (AL-727).
+// Re-audit / verify loop (internal follow-up).
 //
 // After execution, re-run the audit and diff the score against the baseline so
 // the user gets proof the plan actually lifted the score. Closes the loop.
