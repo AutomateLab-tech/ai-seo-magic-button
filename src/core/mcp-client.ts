@@ -1,14 +1,16 @@
-// Thin stdio MCP client (AL-723/AL-724 plumbing).
+// Thin stdio MCP client (internal follow-up/internal follow-up plumbing).
 //
 // The magic button is an ORCHESTRATOR: it spawns the ai-seo and
 // citation-intelligence MCP servers as stdio subprocesses and calls their
 // tools over JSON-RPC. Spawning-as-subprocess (rather than relying on the host
 // to nest MCP calls) is what lets the SAME core lib run inside a CLI, a Claude
 // skill, a plugin, OR our own MCP server — resolving the "an MCP server can't
-// cleanly call other MCPs over the wire" problem noted in AL-723/AL-733.
+// cleanly call other MCPs over the wire" problem noted in internal follow-up/internal follow-up.
 
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
+import { readFileSync as readMcpPackage } from "node:fs";
+const PACKAGE_VERSION: string = JSON.parse(readMcpPackage(new URL("../../package.json", import.meta.url), "utf8")).version;
 
 export interface ToolClient {
   call<T = any>(name: string, args: Record<string, unknown>): Promise<T>;
@@ -51,7 +53,7 @@ async function connect(spec: ServerSpec, label: string): Promise<ToolClient> {
     env: process.env as Record<string, string>,
     stderr: "ignore",
   });
-  const client = new Client({ name: "ai-seo-magic-button", version: "0.1.0" }, { capabilities: {} });
+  const client = new Client({ name: "ai-seo-magic-button", version: PACKAGE_VERSION }, { capabilities: {} });
   await client.connect(transport);
   return {
     async call<T>(name: string, args: Record<string, unknown>): Promise<T> {

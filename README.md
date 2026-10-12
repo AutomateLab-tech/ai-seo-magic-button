@@ -44,7 +44,8 @@ Exposes one tool: **`generate_seo_plan`** `{ domain, pages? }` → returns the f
 ### As a Claude Code plugin
 
 ```
-/plugin install AutomateLab-tech/ai-seo-magic-button
+/plugin marketplace add AutomateLab-tech/ai-seo-magic-button
+/plugin install ai-seo-magic-button@ai-seo-magic-button-marketplace
 ```
 
 ### As a Claude skill
@@ -114,3 +115,7 @@ plugin/           Claude plugin surface
 ## License
 
 MIT
+
+## Maintenance and verification
+
+See [the maintenance guide](docs/maintenance-guide.md) for interpretation limits, current tool names where applicable, and reproducible verification.

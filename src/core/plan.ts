@@ -1,4 +1,4 @@
-// Plan synthesis (AL-725) — the core product output.
+// Plan synthesis (internal follow-up) — the core product output.
 //
 // Convert a SiteAudit into a portable plan.json (machine-readable, each item
 // self-contained and agent-executable) plus a human-readable markdown checklist,
@@ -14,7 +14,8 @@ import {
 } from "./schema.js";
 import type { SiteAudit, Finding, PageAudit } from "./audit.js";
 
-const GENERATOR = "ai-seo-magic-button@0.1.0";
+import { readFileSync as readMcpPackage } from "node:fs";
+const GENERATOR = "ai-seo-magic-button@" + JSON.parse(readMcpPackage(new URL("../../package.json", import.meta.url), "utf8")).version;
 
 const DELTA_BY_SEVERITY: Record<Severity, number> = { critical: 12, high: 8, medium: 4, low: 2, info: 0 };
 

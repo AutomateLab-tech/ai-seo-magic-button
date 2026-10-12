@@ -1,5 +1,7 @@
 #!/usr/bin/env node
-// MCP server surface (AL-733) — the portable core that runs in any MCP host
+import { readFileSync as readMcpPackage } from "node:fs";
+const MCP_PACKAGE_VERSION: string = JSON.parse(readMcpPackage(new URL("../package.json", import.meta.url), "utf8")).version;
+// MCP server surface (internal follow-up) — the portable core that runs in any MCP host
 // (Cursor, Cline, Windsurf, Claude Desktop). Exposes the magic button as a
 // single tool built on the SHARED core lib (src/core), the same lib the CLI,
 // skill, and plugin use. No audit logic lives here — only the MCP wrapping.
@@ -9,7 +11,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { z } from "zod";
 import { generatePlan, planToMarkdown } from "./core/index.js";
 
-const server = new McpServer({ name: "ai-seo-magic-button", version: "0.1.0" });
+const server = new McpServer({ name: "ai-seo-magic-button", version: MCP_PACKAGE_VERSION });
 
 server.registerTool(
   "generate_seo_plan",

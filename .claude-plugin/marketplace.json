@@ -1,0 +1,14 @@
+{
+  "name": "ai-seo-magic-button-marketplace",
+  "description": "Point it at your site, get a whole-site AEO/GEO audit plus a ready-to-run plan your agent can execute.",
+  "owner": {
+    "name": "AutomateLab"
+  },
+  "plugins": [
+    {
+      "name": "ai-seo-magic-button",
+      "source": "./plugin",
+      "description": "Point it at your site, get a whole-site AEO/GEO audit plus a ready-to-run plan your agent can execute."
+    }
+  ]
+}
