@@ -17,13 +17,14 @@
   "scripts": {
     "build": "tsc",
     "audit": "node dist/cli.js audit",
-    "mcp": "node dist/mcp-server.js"
+    "mcp": "node dist/mcp-server.js",
+    "test": "npm run build && node --test test/*.test.mjs"
   },
   "engines": {
     "node": ">=18"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.29.0",
+    "@modelcontextprotocol/sdk": "^1.32.1",
     "zod": "^3.23.8"
   },
   "devDependencies": {

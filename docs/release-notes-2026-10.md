@@ -1,5 +1,7 @@
-# AI-SEO Magic Button maintenance update
+# AI-SEO Magic Button 0.1.2
 
-Repair plugin installation paths and report the package version consistently.
+- Upgrade the MCP SDK to 1.32.1 and proxy-addr to 2.0.8 to resolve the reported high and critical dependency advisories.
+- Align the MCP output schema with the shared plan.json contract, including summary, categories and action variants. Valid plans no longer fail output validation.
+- Run security regression and stdio MCP tests in CI. Recorded fixtures cover invalid inputs, actionable plans, multiple pages and an empty valid plan without contacting live providers.
 
-Installation, compatibility, reproducible inputs and result limits are documented in [the maintenance guide](maintenance-guide.md). Snapshot products retain source and review dates separately from publication.
+The public plan format and CLI remain unchanged. Production dependency audit: zero vulnerabilities at verification.
