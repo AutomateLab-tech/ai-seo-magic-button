@@ -44,7 +44,7 @@ server.registerTool(
         grade: z.string(),
         total_items: z.number(),
         est_total_delta: z.number(),
-        by_severity: z.record(z.enum(["critical", "high", "medium", "low", "info"]), z.number()),
+        by_severity: z.partialRecord(z.enum(["critical", "high", "medium", "low", "info"]), z.number()),
         platform_readiness: z.object({
           chatgpt: z.number().optional(), perplexity: z.number().optional(),
           google_ai_overview: z.number().optional(), gemini: z.number().optional(),
@@ -69,7 +69,7 @@ server.registerTool(
           z.object({ type: z.literal("rewrite_geo"), tool: z.literal("rewrite_geo"),
             params: z.object({ url: z.string().optional(), text: z.string().optional(), target_query: z.string(),
               add_comparison_table: z.boolean().optional(), max_words: z.number().optional() }) }),
-          z.object({ type: z.literal("insert_schema"), jsonld: z.record(z.unknown()) }),
+          z.object({ type: z.literal("insert_schema"), jsonld: z.record(z.string(), z.unknown()) }),
           z.object({ type: z.literal("manual"), instructions: z.string() }),
         ]),
         acceptance: z.string(), failure_signal: z.string().optional(), leading_indicator: z.string().optional(),
